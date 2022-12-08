@@ -6,7 +6,7 @@ Sanity tests for OpenJDK MSI installer. TPS shortcut means Test Package Sanity.
 Run folder `tps` directory as tests.
 
 ## Results
-Test suite produce tests resuslt in a simple text form or as a standard jUnit test format.
+Test suite produces tests results in a simple text form or in a standard jUnit test format.
 
 ## Prerequisities
 
