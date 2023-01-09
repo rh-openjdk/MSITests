@@ -21,6 +21,12 @@ source "$SCRIPT_DIR/testlib.bash"
 parseArguments "$@"
 processArguments
 
-if ! fileExists "${JAVA_INSTALL_DIR}\\bin\\server\\jvm.dll"; then
+JVM_DLL_PATH="${JAVA_INSTALL_DIR}\\bin\\server\\jvm.dll"
+
+if [[ $OTOOL_JDK_VERSION -eq 8 ]]; then
+  JVM_DLL_PATH="${JAVA_INSTALL_DIR}\\jre\\bin\\server\\jvm.dll"
+fi
+
+if ! fileExists "$JVM_DLL_PATH"; then
   exit 1
 fi

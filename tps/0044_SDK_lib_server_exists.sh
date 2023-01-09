@@ -21,6 +21,18 @@ source "$SCRIPT_DIR/testlib.bash"
 parseArguments "$@"
 processArguments
 
-if ! directoryExists "${JAVA_INSTALL_DIR}\\lib\\server"; then
-  exit 1
+
+if [[ $OTOOL_JDK_VERSION -eq 8 ]]; then
+  echo $NOT_VALID_ON_OJDK_8
+else
+  SERVER_PATH=
+  if [[ $OTOOL_JDK_VERSION -eq 17 ]]; then
+    SERVER_PATH="${JAVA_INSTALL_DIR}\\bin\\server"
+  else
+    SERVER_PATH="${JAVA_INSTALL_DIR}\\lib\\server"
+  fi
+  
+  if ! directoryExists $SERVER_PATH; then
+    exit 1
+  fi
 fi

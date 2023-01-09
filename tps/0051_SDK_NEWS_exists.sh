@@ -21,6 +21,10 @@ source "$SCRIPT_DIR/testlib.bash"
 parseArguments "$@"
 processArguments
 
-if ! fileExists "${JAVA_INSTALL_DIR}\\NEWS"; then
-  exit 1
+if [[ $OTOOL_JDK_VERSION -eq 17 ]]; then
+  echo NOT_VALID_ON_OJDK_17  
+else
+  if ! fileExists "${JAVA_INSTALL_DIR}\\NEWS"; then
+    exit 1
+  fi
 fi

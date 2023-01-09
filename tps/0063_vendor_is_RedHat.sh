@@ -21,4 +21,4 @@ source "$SCRIPT_DIR/testlib.bash"
 parseArguments "$@"
 processArguments
 
-/mnt/ramdisk/java/bin/java -XshowSettings:properties -version 2>&1 | grep 'java.vendor = Red Hat, Inc.'
+$JAVA_INSTALL_DIR/bin/java -XshowSettings:properties -version 2>&1 | grep 'java.vendor = Red Hat, Inc.'

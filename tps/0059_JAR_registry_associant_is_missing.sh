@@ -21,6 +21,8 @@ source "$SCRIPT_DIR/testlib.bash"
 parseArguments "$@"
 processArguments
 
+set +e
+
 FAILED_TESTS=0
 
 reg query "HKEY_LOCAL_MACHINE\SOFTWARE\Classes\.jar" 2>&1
@@ -29,7 +31,7 @@ let FAILED_TESTS=$FAILED_TESTS+$?
 reg query "HKEY_LOCAL_MACHINE\SOFTWARE\Classes\JARFile\Shell\Open\Command" 2>&1
 let FAILED_TESTS=$FAILED_TESTS+$?
 
-if [[ $FAILED_TESTS -eq 0 ]]; then
-        echo "There are JAR association records in the registry. See error output above."
+if [[ $FAILED_TESTS -ne 2 ]]; then
+        echo "There are JAR association records in the registry."
         exit 1
 fi
