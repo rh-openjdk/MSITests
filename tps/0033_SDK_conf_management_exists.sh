@@ -21,6 +21,10 @@ source "$SCRIPT_DIR/testlib.bash"
 parseArguments "$@"
 processArguments
 
-if ! directoryExists "${JAVA_INSTALL_DIR}\\conf\\management"; then
-  exit 1
+if [[ $OTOOL_JDK_VERSION -eq 8 ]]; then
+  echo $NOT_VALID_ON_OJDK_8
+else 
+  if ! directoryExists "${JAVA_INSTALL_DIR}\\conf\\management"; then
+    exit 1
+  fi
 fi

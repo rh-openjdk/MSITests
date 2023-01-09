@@ -18,12 +18,16 @@ processArguments
 
 detectJdkAndSetVars
 
-jdk_reg_version=$(reg query "$JDK_REG" | sed 's/\\/\n/g' | sed -n 6p | tr -d '\r')
-jdk_reg_version="${jdk_reg_version/_/.}"
-jdk_reg_version="${jdk_reg_version/_/-}"
+if [[ $OTOOL_JDK_VERSION -eq 8 ]]; then
+  jdk_reg_version=$(reg query "$JDK_REG" | tail -1 | sed 's/.*\\//' | tr -d '\r')
+else
+  jdk_reg_version=$(reg query "$JDK_REG" | sed 's/\\/\n/g' | sed -n 6p | tr -d '\r')
+  jdk_reg_version="${jdk_reg_version/_/.}"
+ jdk_reg_version="${jdk_reg_version/_/-}"
+fi
 
-JAVA_VERSION_FILE=/mnt/ramdisk/version
-/mnt/ramdisk/java/bin/java -version 2>&1 | tee $JAVA_VERSION_FILE
+JAVA_VERSION_FILE=/home/tester/version
+$JAVA_INSTALL_DIR/bin/java -version 2>&1 | tee $JAVA_VERSION_FILE
 
 if ! cat $JAVA_VERSION_FILE | grep $jdk_reg_version; then
     echo "versions of file and registry do not match [${jdk_reg_version}] [$(ls)]"

@@ -21,4 +21,4 @@ source "$SCRIPT_DIR/testlib.bash"
 parseArguments "$@"
 processArguments
 
-/mnt/ramdisk/java/bin/java -version
+$JAVA_INSTALL_DIR/bin/java -version

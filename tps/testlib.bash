@@ -15,11 +15,27 @@ set -ex
 set -o pipefail
 
 JAVA_INSTALL_DIR=R:\\java
-INSTALL_MODULES="jdk,jdk_registry_standard,jdk_env_path"
+INSTALL_MODULES=
+
+if [[ $OTOOL_JDK_VERSION -eq 17 ]]; then
+  INSTALL_MODULES="jdk,jdk_registry_runtime,jdk_env_path"
+elif [[ $OTOOL_JDK_VERSION -eq 11 ]]; then
+  INSTALL_MODULES="jdk,jdk_registry_standard,jdk_env_path"
+else
+  INSTALL_MODULES="jdk,jdk_devel,jdk_registry_standard,jdk_registry_standard_devel,jdk_env_path"
+fi
+
 LOG_DIR_WIN=r:\\tps
 
 # shellcheck disable=SC1091
 source "$TPS_SCRIPT_DIR/common.bash"
+
+if [[ $OTOOL_OS_VERSION -eq 2012 ]]; then
+  mkdir -p /cygdrive/c/Users/tester/java
+  mkdir -p /cygdrive/c/Users/tester/tps
+  JAVA_INSTALL_DIR="C:\Users\tester\java"
+  LOG_DIR_WIN="C:\Users\tester\tps"
+fi
 
 parseArguments() {
   for a in "$@"; do
