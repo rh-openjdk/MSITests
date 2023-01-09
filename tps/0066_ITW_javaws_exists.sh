@@ -22,7 +22,11 @@ parseArguments "$@"
 processArguments
 
 if [[ $OTOOL_JDK_VERSION -eq 8 ]]; then
-  itweb-settings -headless -h --verbose
-else
-  echo NOT_VALID_ON_OJDK_11
+  if ! fileExists "${JAVA_INSTALL_DIR}\\webstart\\javaws.exe"; then
+    exit 1
+  fi
+elif [[ $OTOOL_JDK_VERSION -eq 11 ]]; then
+  echo $NOT_VALID_ON_OJDK_11
+elif [[ $OTOOL_JDK_VERSION -eq 17 ]]; then
+  echo $NOT_IMPLEMENTED
 fi
