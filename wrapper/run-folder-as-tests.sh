@@ -30,29 +30,29 @@ ALL_TESTS=0
 PASSED_TESTS=0
 SKIPPED_TESTS=0
 tmpXmlBodyFile=$(mktemp)
-TMPRESULTS=$SCRIPT_DIR/../results
+RESULTS_FOLDER=$SCRIPT_DIR/../results
 
 rm -rf "${SCRIPT_DIR:?}"/"$SUITE"
 set -x
 #mkdir $SCRIPT_DIR/$SUITE
-mkdir "$TMPRESULTS"
-rpm -qa | sort > "$TMPRESULTS"/rpms.txt
+mkdir "$RESULTS_FOLDER"
+rpm -qa | sort > "$RESULTS_FOLDER"/rpms.txt
 if [ "$?" -ne "0" ]; then
   let FAILED_TESTS=$FAILED_TESTS+1
 fi
 
 TESTS=$(ls "$DIR" | grep "\\.sh$" | sort)
-echo -n "" > "${TMPRESULTS}"/results.txt
+echo -n "" > "${RESULTS_FOLDER}"/results.txt
 
  # shellcheck disable=SC1091
 source "$SCRIPT_DIR"/jtreg-shell-xml.sh
 
 function isIgnored() {
-  cat "$TMPRESULTS"/"$TEST"-result/global-stdouterr.log | grep -e "^\!skipped!"
+  cat "$RESULTS_FOLDER"/"$TEST"-result/global-stdouterr.log | grep -e "^\!skipped!"
 }
 
 function failOrIgnore() {
-  printXmlTest "$SUITE.test" "$TEST" "0.01" "$TMPRESULTS/$TEST-result/global-stdouterr.log" "../artifact/results/$TEST-result/global-stdouterr.log and ../artifact/results/$TEST-result/report.txt" >> $tmpXmlBodyFile
+  printXmlTest "$SUITE.test" "$TEST" "0.01" "$RESULTS_FOLDER/$TEST-result/global-stdouterr.log" "../artifact/results/$TEST-result/global-stdouterr.log and ../artifact/results/$TEST-result/report.txt" >> $tmpXmlBodyFile
 }
 
 if [ "$RFAT_RERUNS" == "" ] ; then
@@ -61,7 +61,7 @@ fi
 
 for TEST in $TESTS ; do
   cd "$SCRIPT_DIR"/
-  TTDIR=$TMPRESULTS/$TEST-result
+  TTDIR=$RESULTS_FOLDER/$TEST-result
   set +e
   for x in $(seq "$RFAT_RERUNS") ; do
     if [ "$x" = "1" ] ; then
@@ -78,38 +78,38 @@ for TEST in $TESTS ; do
       break
     fi
   done
-  echo "Attempt: $x/$RFAT_RERUNS" >> "$TMPRESULTS"/"$TEST"-result/global-stdouterr.log
+  echo "Attempt: $x/$RFAT_RERUNS" >> "$RESULTS_FOLDER"/"$TEST"-result/global-stdouterr.log
   set -e
   if [ "${RES}" -eq 0 ]; then
     if isIgnored ; then
       SKIPPED_TESTS=$(($SKIPPED_TESTS+1))
-      echo -n "Ignored" >> "${TMPRESULTS}"/results.txt
+      echo -n "Ignored" >> "${RESULTS_FOLDER}"/results.txt
       failOrIgnore
     else
-      echo -n "Passed" >> "${TMPRESULTS}"/results.txt
+      echo -n "Passed" >> "${RESULTS_FOLDER}"/results.txt
       PASSED_TESTS=$(($PASSED_TESTS + 1))
       printXmlTest "$SUITE".test "$TEST" 0.01 >> "$tmpXmlBodyFile"
    fi
   else
     if isIgnored ; then
       SKIPPED_TESTS=$(($SKIPPED_TESTS+1))
-      echo -n "Ignored" >> "${TMPRESULTS}"/results.txt
+      echo -n "Ignored" >> "${RESULTS_FOLDER}"/results.txt
       failOrIgnore
     else
       FAILED_TESTS=$(($FAILED_TESTS+1))
-      echo -n "FAILED" >> "${TMPRESULTS}"/results.txt
+      echo -n "FAILED" >> "${RESULTS_FOLDER}"/results.txt
       failOrIgnore
     fi
   fi
-  echo " $TEST" >> "${TMPRESULTS}"/results.txt
+  echo " $TEST" >> "${RESULTS_FOLDER}"/results.txt
   ALL_TESTS=$(($ALL_TESTS+1))
 done
 
-printXmlHeader $PASSED_TESTS $FAILED_TESTS $ALL_TESTS $SKIPPED_TESTS "$SUITE" >  "$TMPRESULTS"/"$SUITE".jtr.xml
-cat "$tmpXmlBodyFile" >>  "$TMPRESULTS"/"$SUITE".jtr.xml
-printXmlFooter >>  "$TMPRESULTS"/"$SUITE".jtr.xml
+printXmlHeader $PASSED_TESTS $FAILED_TESTS $ALL_TESTS $SKIPPED_TESTS "$SUITE" >  "$RESULTS_FOLDER"/"$SUITE".jtr.xml
+cat "$tmpXmlBodyFile" >>  "$RESULTS_FOLDER"/"$SUITE".jtr.xml
+printXmlFooter >>  "$RESULTS_FOLDER"/"$SUITE".jtr.xml
 rm "$tmpXmlBodyFile"
-pushd "$TMPRESULTS"
+pushd "$RESULTS_FOLDER"
   tar -czf  "$SUITE".tar.gz "$SUITE".jtr.xml
 popd
 
