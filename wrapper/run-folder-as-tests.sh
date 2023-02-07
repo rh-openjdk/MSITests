@@ -22,18 +22,13 @@ if [ "x$DIR" == "x" ] ; then
 fi
 
 SUITE=`basename $DIR`
-# ${WORKSPACE} is set by jenkins. So when running local, without VM, it uses real jenkins workspace. Otherwise use /mnt/worksace
-if [[ x${WORKSPACE} == x ]]; then
-  mkdir -p $SCRIPT_DIR/../workspace
-  WORKSPACE=$SCRIPT_DIR/../workspace
-fi
 
 FAILED_TESTS=0
 ALL_TESTS=0
 PASSED_TESTS=0
 SKIPPED_TESTS=0
 tmpXmlBodyFile=$(mktemp)
-TMPRESULTS=$SCRIPT_DIR/../../results
+TMPRESULTS=$SCRIPT_DIR/../results
 
 rm -rf $SCRIPT_DIR/$SUITE
 set -x
@@ -45,8 +40,7 @@ if [ "$?" -ne "0" ]; then
 fi
 
 TESTS=`ls $DIR | grep "\\.sh$" | sort`
-echo $WORKSPACE
-echo -n "" > ${WORKSPACE}/results.txt
+echo -n "" > ${TMPRESULTS}/results.txt
 
 source $SCRIPT_DIR/jtreg-shell-xml.sh
 
@@ -86,25 +80,25 @@ for TEST in $TESTS ; do
   if [ ${RES} -eq 0 ]; then
     if isIgnored ; then
       SKIPPED_TESTS=$(($SKIPPED_TESTS+1))
-      echo -n "Ignored" >> ${WORKSPACE}/results.txt
+      echo -n "Ignored" >> ${TMPRESULTS}/results.txt
       failOrIgnore
     else
-      echo -n "Passed" >> ${WORKSPACE}/results.txt
+      echo -n "Passed" >> ${TMPRESULTS}/results.txt
       PASSED_TESTS=$(($PASSED_TESTS + 1))
       printXmlTest $SUITE.test $TEST 0.01 >> $tmpXmlBodyFile
    fi
   else
     if isIgnored ; then
       SKIPPED_TESTS=$(($SKIPPED_TESTS+1))
-      echo -n "Ignored" >> ${WORKSPACE}/results.txt
+      echo -n "Ignored" >> ${TMPRESULTS}/results.txt
       failOrIgnore
     else
       FAILED_TESTS=$(($FAILED_TESTS+1))
-      echo -n "FAILED" >> ${WORKSPACE}/results.txt
+      echo -n "FAILED" >> ${TMPRESULTS}/results.txt
       failOrIgnore
     fi
   fi
-  echo " $TEST" >> ${WORKSPACE}/results.txt
+  echo " $TEST" >> ${TMPRESULTS}/results.txt
   ALL_TESTS=$(($ALL_TESTS+1))
 done
 
@@ -116,27 +110,7 @@ pushd $TMPRESULTS
   tar -czf  $SUITE.tar.gz $SUITE.jtr.xml
 popd
 
-rm -rf ${WORKSPACE}/results
-cp -r $TMPRESULTS/ ${WORKSPACE}
-
-mv ${WORKSPACE}/results.txt ${WORKSPACE}/results/
-#this was originally typo, but as value in properties, it may not metter ven with SUITE variable
-echo "rhqa.failed=$FAILED_TESTS" > ${WORKSPACE}/results/results.properties
-echo "rhqa.suites=$ALL_TESTS" >> ${WORKSPACE}/results/results.properties #total
-echo "rhqa.skipped=$SKIPPED_TESTS" >> ${WORKSPACE}/results/results.properties
-echo "rhqa.passed=$PASSED_TESTS" >> ${WORKSPACE}/results/results.properties
-
-if [ "x$ENFORCED_JDK_STATUS" == "x" ] ; then
-  rm -rf ${WORKSPACE}/rpms-old
-  if [ -e ${WORKSPACE}/rpms ] ; then
-    mv ${WORKSPACE}/rpms ${WORKSPACE}/rpms-old
-  fi
-fi
-
-#cd ${WORKSPACE}
-#pwd
-#ls -lR
-
 echo "Failed: $FAILED_TESTS"
+
 # returning 0 to allow unstable state
 exit 0
