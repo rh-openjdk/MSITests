@@ -16,5 +16,6 @@ set -x
 set -e
 set -o pipefail
 
+RESULTS_FOLDER_NAME="${RESULTS_FOLDER_NAME:-results}" 
 
-bash "$SCRIPT_DIR"/run-folder-as-tests.sh $SCRIPT_DIR/../tps DO_NOT_INSTALL_ANYTHING
+bash "$SCRIPT_DIR"/run-folder-as-tests.sh "$SCRIPT_DIR"/../tps "$RESULTS_FOLDER_NAME"
