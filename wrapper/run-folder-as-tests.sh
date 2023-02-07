@@ -18,7 +18,7 @@ SCRIPT_DIR="$( cd -P "$( dirname "$SCRIPT_SOURCE" )" && pwd )"
 readonly SCRIPT_DIR
 
 DIR=$1
-RESULTS_FOLDER_NAME=$3
+RESULTS_FOLDER_NAME=$2
 
 if [ "$DIR" == "" ] ; then
  echo "dir with tests reqired"
