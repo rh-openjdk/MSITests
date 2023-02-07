@@ -18,6 +18,7 @@ SCRIPT_DIR="$( cd -P "$( dirname "$SCRIPT_SOURCE" )" && pwd )"
 readonly SCRIPT_DIR
 
 DIR=$1
+RESULTS_FOLDER_NAME=$3
 
 if [ "$DIR" == "" ] ; then
  echo "dir with tests reqired"
@@ -30,11 +31,10 @@ ALL_TESTS=0
 PASSED_TESTS=0
 SKIPPED_TESTS=0
 tmpXmlBodyFile=$(mktemp)
-RESULTS_FOLDER=$SCRIPT_DIR/../results
+RESULTS_FOLDER=$SCRIPT_DIR/../$RESULTS_FOLDER_NAME
 
 rm -rf "${SCRIPT_DIR:?}"/"$SUITE"
 set -x
-#mkdir $SCRIPT_DIR/$SUITE
 mkdir "$RESULTS_FOLDER"
 rpm -qa | sort > "$RESULTS_FOLDER"/rpms.txt
 if [ "$?" -ne "0" ]; then
