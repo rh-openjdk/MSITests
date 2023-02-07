@@ -17,4 +17,4 @@ set -e
 set -o pipefail
 
 
-bash "$SCRIPT_DIR"/run-folder-as-tests.sh $SCRIPT_DIR/../tps DO_NOT_INSTALL_ANYTHING
+bash "$SCRIPT_DIR"/run-folder-as-tests.sh "$SCRIPT_DIR"/../tps DO_NOT_INSTALL_ANYTHING
