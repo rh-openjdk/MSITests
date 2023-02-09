@@ -22,9 +22,9 @@ export RESULTS_FOLDER_NAME="${RESULTS_FOLDER_NAME_INPUT:-results}"
 export OTOOL_jresdk=sdk
 export INPUT_FOLDER=$SCRIPT_DIR/../input
 export CURRENT_USER_NAME=tester
-export INSTALL_DIR_INPUT=C:\\\\Users\\\\$CURRENT_USER_NAME\\\\java
+export INSTALL_DIR_INPUT=C:\\Users\\$CURRENT_USER_NAME\\java
 export OTOOL_JDK_VERSION=11 #todorc: implement detection of java version
 
-export INSTALL_LOG_FOLDER_INPUT=C:\\\\Users\\\\$CURRENT_USER_NAME\\\\install_log
+export INSTALL_LOG_FOLDER_INPUT=C:\\Users\\$CURRENT_USER_NAME\\install_log
 
 bash "$SCRIPT_DIR"/run-folder-as-tests.sh "$SCRIPT_DIR"/../tps 
