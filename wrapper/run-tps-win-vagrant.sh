@@ -23,6 +23,7 @@ export OTOOL_jresdk=sdk
 export INPUT_FOLDER=$SCRIPT_DIR/../input
 export CURRENT_USER_NAME=tester
 export INSTALL_DIR_INPUT=C:\\\\Users\\\\$CURRENT_USER_NAME\\\\java
+export OTOOL_JDK_VERSION=11 #todorc
 
 export INSTALL_LOG_FOLDER_INPUT=C:\\\\Users\\\\$CURRENT_USER_NAME\\\\install_log
 
