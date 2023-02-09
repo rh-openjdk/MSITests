@@ -24,6 +24,6 @@ export INPUT_FOLDER=$SCRIPT_DIR/../input
 export CURRENT_USER_NAME=tester
 export INSTALL_DIR_INPUT=C:\\\\Users\\\\$CURRENT_USER_NAME\\\\java
 
-export INSTALL_LOG_FOLDER_INPUT=$SCRIPT_DIR/../install_log
+export INSTALL_LOG_FOLDER_INPUT=C:\\\\Users\\\\$CURRENT_USER_NAME\\\\install_log
 
 bash "$SCRIPT_DIR"/run-folder-as-tests.sh "$SCRIPT_DIR"/../tps 
