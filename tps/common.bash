@@ -1,6 +1,6 @@
 #!/bin/bash
 
-JAVA_INSTALL_DIR=$INSTALL_DIR
+JAVA_INSTALL_DIR=$INSTALL_DIR_INPUT
 JAVA_EXE=${JAVA_INSTALL_DIR}\\bin\\java.exe
 JAVA_INSTALL_DIR_REG=R:\\\\java
 SYS_ENV_REG="HKLM\SYSTEM\CurrentControlSet\Control\Session Manager\Environment"

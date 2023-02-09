@@ -14,7 +14,7 @@ readonly TPS_SCRIPT_DIR="$(cd -P "$(dirname "$SCRIPT_SOURCE")" && pwd)"
 set -ex
 set -o pipefail
 
-JAVA_INSTALL_DIR=$INSTALL_DIR
+JAVA_INSTALL_DIR=$INSTALL_DIR_INPUT
 INSTALL_MODULES=
 
 if [[ $OTOOL_JDK_VERSION -eq 17 ]]; then
