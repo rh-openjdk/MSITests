@@ -25,6 +25,9 @@ export CURRENT_USER_NAME=tester
 export INSTALL_DIR_INPUT=C:\\\\Users\\\\$CURRENT_USER_NAME\\\\java
 export OTOOL_JDK_VERSION=11 #todorc: implement detection of java version
 
+# todorc: extract modules
+#export INSTALL_MODULES="jdk,jdk_registry_standard,jdk_env_path"
+
 export INSTALL_LOG_FOLDER_INPUT=C:\\\\Users\\\\$CURRENT_USER_NAME\\\\install_log
 
 bash "$SCRIPT_DIR"/run-folder-as-tests.sh "$SCRIPT_DIR"/../tps 
