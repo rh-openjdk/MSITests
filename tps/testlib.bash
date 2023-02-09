@@ -26,6 +26,7 @@ else
 fi
 
 LOG_DIR_WIN=$INSTALL_LOG_FOLDER_INPUT
+mkdir -p $LOG_DIR_WIN
 
 # shellcheck disable=SC1091
 source "$TPS_SCRIPT_DIR/common.bash"
