@@ -26,7 +26,7 @@ else
  jdk_reg_version="${jdk_reg_version/_/-}"
 fi
 
-JAVA_VERSION_FILE=/home/tester/version
+JAVA_VERSION_FILE=/home/$CURRENT_USER_NAME/version
 $JAVA_INSTALL_DIR/bin/java -version 2>&1 | tee $JAVA_VERSION_FILE
 
 if ! cat $JAVA_VERSION_FILE | grep $jdk_reg_version; then
