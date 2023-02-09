@@ -25,7 +25,7 @@ else
   INSTALL_MODULES="jdk,jdk_devel,jdk_registry_standard,jdk_registry_standard_devel,jdk_env_path"
 fi
 
-LOG_DIR_WIN=r:\\tps
+LOG_DIR_WIN=$INSTALL_LOG_FOLDER_INPUT
 
 # shellcheck disable=SC1091
 source "$TPS_SCRIPT_DIR/common.bash"
