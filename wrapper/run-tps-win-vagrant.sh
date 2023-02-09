@@ -22,7 +22,7 @@ export RESULTS_FOLDER_NAME="${RESULTS_FOLDER_NAME_INPUT:-results}"
 export OTOOL_jresdk=sdk
 export INPUT_FOLDER=$SCRIPT_DIR/../input
 export CURRENT_USER_NAME=tester
-export INSTALL_DIR_INPUT=C:\\\\Users\\\\$CURRENT_USER_NAME
+export INSTALL_DIR_INPUT=C:\\\\Users\\\\$CURRENT_USER_NAME\\\\java
 
 export INSTALL_LOG_FOLDER_INPUT=$SCRIPT_DIR/../install_log
 
