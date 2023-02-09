@@ -21,8 +21,9 @@ export RESULTS_FOLDER_NAME="${RESULTS_FOLDER_NAME_INPUT:-results}"
 # dependencies
 export OTOOL_jresdk=sdk
 export INPUT_FOLDER=$SCRIPT_DIR/../input
-#export INSTALL_DIR_INPUT=$SCRIPT_DIR/../install_dir
-export INSTALL_LOG_FOLDER_INPUT=$SCRIPT_DIR/../isntall_log
 export CURRENT_USER_NAME=tester
+export INSTALL_DIR_INPUT=C:\\\\Users\\\\$CURRENT_USER_NAME
+
+export INSTALL_LOG_FOLDER_INPUT=$SCRIPT_DIR/../install_log
 
 bash "$SCRIPT_DIR"/run-folder-as-tests.sh "$SCRIPT_DIR"/../tps 
