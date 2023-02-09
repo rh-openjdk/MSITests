@@ -18,4 +18,9 @@ set -o pipefail
 
 RESULTS_FOLDER_NAME="${RESULTS_FOLDER_NAME:-results}" 
 
-bash "$SCRIPT_DIR"/run-folder-as-tests.sh "$SCRIPT_DIR"/../tps "$RESULTS_FOLDER_NAME"
+# dependencies
+export OTOOL_jresdk=sdk
+export INPUT_FOLDER=$SCRIPT_DIR/../input
+export RESULTS_FOLDER_NAME=
+
+bash "$SCRIPT_DIR"/run-folder-as-tests.sh "$SCRIPT_DIR"/../tps 
