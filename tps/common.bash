@@ -4,7 +4,7 @@ JAVA_INSTALL_DIR=R:\\java
 JAVA_EXE=${JAVA_INSTALL_DIR}\\bin\\java.exe
 JAVA_INSTALL_DIR_REG=R:\\\\java
 SYS_ENV_REG="HKLM\SYSTEM\CurrentControlSet\Control\Session Manager\Environment"
-RPMS_DIR=/mnt/workspace/rpms
+RPMS_DIR=$INPUT_FOLDER
 
 if [[ $OTOOL_OS_VERSION -eq 2012 ]]; then
   JAVA_INSTALL_DIR="C:\Users\tester\java"

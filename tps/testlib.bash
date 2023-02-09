@@ -106,7 +106,7 @@ function installMSI() {
   rm -rf $JAVA_INSTALL_DIR
   INSTALL_LOG_PATH=${LOG_DIR_WIN}\\javainstall-$(date +%s%N).log
   msiexec /i *.msi INSTALLDIR=${JAVA_INSTALL_DIR} ADDLOCAL=${INSTALL_MODULES} /quiet /Lv* "$INSTALL_LOG_PATH" || true
-  cp "$INSTALL_LOG_PATH" /mnt/workspace
+  cp "$INSTALL_LOG_PATH" $RESULTS_FOLDER
   popd
 }
 
@@ -114,6 +114,6 @@ function uninstallMSI() {
   pushd "$RPMS_DIR"
   UNINSTALL_LOG_PATH=${LOG_DIR_WIN}\\javauninstall-$(date +%s%N).log
   msiexec /x *.msi INSTALLDIR=${JAVA_INSTALL_DIR} /quiet /Lv* "$UNINSTALL_LOG_PATH" || true
-  cp "$UNINSTALL_LOG_PATH" /mnt/workspace
+  cp "$UNINSTALL_LOG_PATH" $RESULTS_FOLDER
   popd
 }
