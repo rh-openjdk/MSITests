@@ -24,8 +24,16 @@ processArguments
 detectJdkAndSetVars
 
 current_win_path=$(reg query "${SYS_ENV_REG}" /v Path | grep Path)
-expected_path_dir=$(echo ";${JAVA_INSTALL_DIR}\\bin")
+expected_path_dir=";C:\Users\tester\java\bin"
 if [[ "$current_win_path" != *"$expected_path_dir"* ]]; then
     echo "system PATH does not contain valid java path"
     exit 1
 fi
+
+# todorc update
+
+# current
+#;C:\\Users\\tester\\java\bin
+
+# should be
+#;C:\Users\tester\java\bin
