@@ -15,15 +15,6 @@ set -ex
 set -o pipefail
 
 JAVA_INSTALL_DIR=$INSTALL_DIR_INPUT
-INSTALL_MODULES=
-
-if [[ $OTOOL_JDK_VERSION -eq 17 ]]; then
-  INSTALL_MODULES="jdk,jdk_registry_runtime,jdk_env_path"
-elif [[ $OTOOL_JDK_VERSION -eq 11 ]]; then
-  INSTALL_MODULES="jdk,jdk_registry_standard,jdk_env_path"
-else
-  INSTALL_MODULES="jdk,jdk_devel,jdk_registry_standard,jdk_registry_standard_devel,jdk_env_path"
-fi
 
 LOG_DIR_WIN=$INSTALL_LOG_FOLDER_INPUT
 mkdir -p $LOG_DIR_WIN
