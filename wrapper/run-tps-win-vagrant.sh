@@ -30,7 +30,7 @@ export OTOOL_JDK_VERSION="${JDK_VERSION_INPUT:-11}" #todorc: implement detection
 # otherwise RH will be used
 # Possible implemented values are Adoptium and RH
 # You can configure specifics in configure-vendor-specific-settings.sh
-export MSI_VENDOR="${MSI_VENDORINPUT:-RH}"
+export MSI_VENDOR="${MSI_VENDOR_INPUT:-RH}"
 
 # propagate INPUT_PATH_INPUT to folder containing one msi used for tests
 # otherwise ../input forlder will be used

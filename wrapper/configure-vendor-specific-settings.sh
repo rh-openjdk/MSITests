@@ -14,7 +14,7 @@ function setupVendorSpecific() {
 }
 
 function configureAdoptiumSpecificSettings() {
-  echo "Adoptium specific settings applied"
+  INSTALL_MODULES=FeatureMain,FeatureJavaHome,FeatureJarFileRunWith
 }
 
 # there are specific targets for every major version, let's confugure default values for them
