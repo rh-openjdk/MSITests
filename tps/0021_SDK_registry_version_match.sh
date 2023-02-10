@@ -16,8 +16,6 @@ source "$SCRIPT_DIR/testlib.bash"
 parseArguments "$@"
 processArguments
 
-detectJdkAndSetVars
-
 if [[ $OTOOL_JDK_VERSION -eq 8 ]]; then
   jdk_reg_version=$(reg query "$JDK_REG" | tail -1 | sed 's/.*\\//' | tr -d '\r')
 else
