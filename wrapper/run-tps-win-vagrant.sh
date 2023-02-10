@@ -39,7 +39,7 @@ export INPUT_FOLDER=$SCRIPT_DIR"${INPUT_PATH_INPUT:-/../input}"
 export CURRENT_USER_NAME="${CURRENT_USER_NAME_INPUT:-tester}"
 
 # propagate INSTALL_LOCATION_INPUT for the place where java will be installed
-export INSTALL_DIR_INPUT=${"INSTALL_LOCATION_INPUT:-C:\\\\Users\\\\$CURRENT_USER_NAME\\\\java"}
+export INSTALL_DIR_INPUT=C:\\\Users\\\$CURRENT_USER_NAME\\\java
 
 # dependencies
 export OTOOL_jresdk=sdk #hardcoded value, just sdk tests are implemented, not jre which it the other possibility
