@@ -23,8 +23,6 @@ processArguments
 
 echo "$NOT_IMPLEMENTED"
 
-#detectJdkAndSetVars
-#
 #if ! reg query "${JRE_REG}" /s | grep JavaHome.*${JAVA_INSTALL_JRE_DIR_REG}; then
 #    echo "${JRE_REG} doesn't contain correct value"
 #    exit 1

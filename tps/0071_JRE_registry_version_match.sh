@@ -16,8 +16,6 @@ source "$SCRIPT_DIR/testlib.bash"
 parseArguments "$@"
 processArguments
 
-#detectJdkAndSetVars
-
 echo "$NOT_IMPLEMENTED"
 
 
