@@ -21,8 +21,6 @@ source "$SCRIPT_DIR/testlib.bash"
 parseArguments "$@"
 processArguments
 
-detectJdkAndSetVars
-
 if ! reg query "${JDK_REG}" /s | grep RuntimeLib.*${JAVA_JDK_JVM_DLL}; then
     echo "${JDK_REG} doesn't contain correct value"
     exit 1

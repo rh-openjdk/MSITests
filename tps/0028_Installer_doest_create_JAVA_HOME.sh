@@ -21,8 +21,6 @@ source "$SCRIPT_DIR/testlib.bash"
 parseArguments "$@"
 processArguments
 
-detectJdkAndSetVars 2>&1 | tee "$REPORT_FILE"
-
 if [[ $(reg query "${SYS_ENV_REG}" | grep JAVA_HOME) ]]; then
     echo "installer should not create JAVA_HOME env variable"
     exit 1

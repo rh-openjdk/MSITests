@@ -21,8 +21,6 @@ source "$SCRIPT_DIR/testlib.bash"
 parseArguments "$@"
 processArguments
 
-detectJdkAndSetVars
-
 current_win_path=$(reg query "${SYS_ENV_REG}" /v Path | grep Path)
 expected_path_dir=";C:\Users\tester\java\bin"
 if [[ "$current_win_path" != *"$expected_path_dir"* ]]; then

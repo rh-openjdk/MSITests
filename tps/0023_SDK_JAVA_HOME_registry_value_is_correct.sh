@@ -21,8 +21,6 @@ source "$SCRIPT_DIR/testlib.bash"
 parseArguments "$@"
 processArguments
 
-detectJdkAndSetVars
-
 if ! reg query "${JDK_REG}" /s | grep JavaHome.*${JAVA_INSTALL_DIR_REG}; then
     echo "${JDK_REG} doesn't contain correct value"
     exit 1
