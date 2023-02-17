@@ -27,4 +27,4 @@ Use CURRENT_USER_NAME for definiton of user under which the tests will run.
 
 # Credits
 This project would never be created without extensive help of
-* sparkoo@github
+* [@sparkoo](https://github.com/sparkoo)
