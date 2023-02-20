@@ -1,0 +1,66 @@
+on:
+  pull_request:
+    branches:
+      - "*"
+  push:
+    branches:
+      - "*"
+
+jobs:
+  test:
+    name: "Test"
+    runs-on: "windows-latest"
+    strategy:
+      fail-fast: false
+      matrix:
+        jdkconf:
+          - JDK 8
+          - JDK 11
+          - JDK 17
+        include:
+          - jdkconf: JDK 8
+            jdkver: "8"
+          - jdkconf: JDK 11
+            jdkver: "11"
+          - jdkconf: JDK 17
+            jdkver: "17"
+    steps:
+      - uses: actions/checkout@v3
+      - uses: msys2/setup-msys2@v2
+        with:
+          update: true
+          install: wget tar
+      - name: Prepare env
+        shell: msys2 {0}
+        run: |
+          mkdir input
+          echo "JDK_VERSION_INPUT=${{ matrix.jdkver }}" >> $GITHUB_ENV
+          echo "MSI_VENDOR_INPUT=Adoptium" >> $GITHUB_ENV
+          echo "RESULTS_FOLDER_NAME=results" >> $GITHUB_ENV
+          echo "CURRENT_USER_NAME_INPUT=runneradmin" >> $GITHUB_ENV
+      - name: Download Installer
+        shell: msys2 {0}
+        run: |
+          wget -O "input/installer.msi" "https://api.adoptium.net/v3/installer/latest/${{ matrix.jdkver }}/ga/windows/x64/jdk/hotspot/normal/eclipse?project=jdk"
+          ls -lah input
+      - name: Run
+        shell: msys2 {0}
+        timeout-minutes: 30
+        run: MSYS2_ARG_CONV_EXCL='*' ./wrapper/run-tps-win-vagrant.sh
+      - name: Check results
+        if: ${{ always() }}
+        shell: msys2 {0}
+        run: |
+          cat "results/results.txt"
+          ! grep -qi '^FAILED' "results/results.txt"
+      - name: Pack results
+        if: ${{ always() }}
+        shell: msys2 {0}
+        run: |
+          tar -C results -czf "results-jdk${{ matrix.jdkver }}.tar.gz" .
+      - name: Upload results
+        if: ${{ always() }}
+        uses: actions/upload-artifact@v3
+        with:
+          path: "results-jdk${{ matrix.jdkver }}.tar.gz"
+        continue-on-error: true
