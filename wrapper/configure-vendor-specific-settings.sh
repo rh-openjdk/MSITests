@@ -11,7 +11,7 @@ function setupVendorSpecific() {
 
 function configureAdoptiumSpecificSettings() {
   # check if this is the default configuration
-  INSTALL_MODULES=FeatureMain,FeatureJavaHome,FeatureJarFileRunWith
+  export INSTALL_MODULES=FeatureMain,FeatureJavaHome,FeatureJarFileRunWith
 
   # todorc: configure Adoptium registry values
 }
