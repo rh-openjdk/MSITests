@@ -21,6 +21,11 @@ source "$SCRIPT_DIR/testlib.bash"
 parseArguments "$@"
 processArguments
 
+if [ "$MSI_VENDOR" == "Adoptium" ]; then
+    echo "$NOT_IMPLEMENTED_ON_ADOPTIUM"
+    exit 0   
+fi
+
 if [[ $OTOOL_JDK_VERSION -eq 8 ]]; then
   if ! fileExists "${JAVA_INSTALL_DIR}\\webstart\\javaws.exe"; then
     exit 1
