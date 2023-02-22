@@ -15,6 +15,7 @@ export NOT_IMPLEMENTED="!skipped!, because not implemented yet"
 export NOT_VALID_ON_OJDK_8="!skipped!, because not valid on ojkd 8"
 export NOT_VALID_ON_OJDK_11="!skipped!, because not valid on ojkd 11"
 export NOT_VALID_ON_OJDK17="!skipped!, because not valid on ojkd 17"
+export NOT_IMPLEMENTED_ON_ADOPTIUM="!skipped!, because not implemented yet for Adoptium"
 
 function isMSI() {
   return 0

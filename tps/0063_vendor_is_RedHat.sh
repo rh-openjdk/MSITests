@@ -21,4 +21,9 @@ source "$SCRIPT_DIR/testlib.bash"
 parseArguments "$@"
 processArguments
 
+if [ "$MSI_VENDOR" == "Adoptium" ]; then
+    echo "$NOT_IMPLEMENTED_ON_ADOPTIUM"
+    exit 0   
+fi
+
 $JAVA_INSTALL_DIR/bin/java -XshowSettings:properties -version 2>&1 | grep 'java.vendor = Red Hat, Inc.'

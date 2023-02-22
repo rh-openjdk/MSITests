@@ -35,7 +35,6 @@ export RESULTS_FOLDER=$SCRIPT_DIR/../$RESULTS_FOLDER_NAME
 rm -rf "${SCRIPT_DIR:?}"/"$SUITE"
 set -x
 mkdir "$RESULTS_FOLDER"
-rpm -qa | sort > "$RESULTS_FOLDER"/rpms.txt
 if [ "$?" -ne "0" ]; then
   let FAILED_TESTS=$FAILED_TESTS+1
 fi

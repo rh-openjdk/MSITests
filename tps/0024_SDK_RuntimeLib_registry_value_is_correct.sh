@@ -21,6 +21,11 @@ source "$SCRIPT_DIR/testlib.bash"
 parseArguments "$@"
 processArguments
 
+if [ "$MSI_VENDOR" == "Adoptium" ]; then
+    echo "$NOT_IMPLEMENTED_ON_ADOPTIUM"
+    exit 0   
+fi
+
 if ! reg query "${JDK_REG}" /s | grep RuntimeLib.*${JAVA_JDK_JVM_DLL}; then
     echo "${JDK_REG} doesn't contain correct value"
     exit 1

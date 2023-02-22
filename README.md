@@ -24,3 +24,7 @@ Use INPUT_FOLDER used for testing (including MSI)
 
 ### CURRENT_USER_NAME
 Use CURRENT_USER_NAME for definiton of user under which the tests will run.
+
+# Credits
+This project would never be created without extensive help of
+* [@sparkoo](https://github.com/sparkoo)
