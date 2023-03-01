@@ -21,6 +21,11 @@ source "$SCRIPT_DIR/testlib.bash"
 parseArguments "$@"
 processArguments
 
+if [ "$MSI_VENDOR" == "Adoptium" ]; then
+    echo "$NOT_IMPLEMENTED_ON_ADOPTIUM"
+    exit 0   
+fi
+
 reg query "HKEY_LOCAL_MACHINE\SOFTWARE\Classes\JARFile\Shell\Open\Command" | grep "javaw.exe"
 
 reg query "HKEY_LOCAL_MACHINE\SOFTWARE\Classes\.jar"
