@@ -17,29 +17,29 @@ set -x
 set -e
 set -o pipefail
 
-# propagate RESULTS_FOLDER_NAME_INPUT for the custom path for storing tests results here
+# propagate RESULTS_FOLDER, if set, for the custom path for storing tests results here
 # otherwise results folder will be used
-export RESULTS_FOLDER_NAME="${RESULTS_FOLDER_NAME_INPUT:-results}" 
+export RESULTS_FOLDER="${RESULTS_FOLDER:-results}"
 
-# propagate JDK_VERSION_INPUT for definition of which subset of tests should run
+# propagate JDK_VERSION, if set, for definition of which subset of tests should run
 # otherwise version 11 will be used
-export OTOOL_JDK_VERSION="${JDK_VERSION_INPUT:-11}" #todorc: implement detection of java version
+export OTOOL_JDK_VERSION="${OTOOL_JDK_VERSION:-${JDK_VERSION:-11}}" #todorc: implement detection of java version
 
-# propagate MSI_VENDOR_INPUT variable>
+# propagate MSI_VENDOR variable, if set,
 # this will ensure vendor-specific parts of tests will be applied
 # otherwise RH will be used
 # Possible implemented values are Adoptium and RH
 # You can configure specifics in configure-vendor-specific-settings.sh
-export MSI_VENDOR="${MSI_VENDOR_INPUT:-RH}"
+export MSI_VENDOR="${MSI_VENDOR:-RH}"
 
-# propagate INPUT_PATH_INPUT to folder containing one msi used for tests
-# otherwise ../input folder will be used
-export INPUT_FOLDER=$SCRIPT_DIR"${INPUT_PATH_INPUT:-/../input}"
+# propagate INPUT_FOLDER, if set, to folder containing one msi used for tests
+# otherwise input folder will be used
+export INPUT_FOLDER="${INPUT_FOLDER:-input}"
 
-# propagate CURRENT_USER_INPUT
+# propagate CURRENT_USER, if set,
 # this should contain user used for testing
-# by default tester is used
-export CURRENT_USER_NAME="${CURRENT_USER_NAME_INPUT:-tester}"
+# by default $USER
+export CURRENT_USER_NAME="${CURRENT_USER_NAME:-$USER}"
 
 export INSTALL_DIR_INPUT=C:\\\\Users\\\\$CURRENT_USER_NAME\\\\java
 

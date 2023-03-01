@@ -10,20 +10,24 @@ Run folder `tps` directory as tests
 
 ## Configuration 
 
-### RESULTS_FOLDER_NAME
-Use RESULTS_FOLDER_NAME for the name of the folder where the results will be stored. 
+### RESULTS_FOLDER
+Use RESULTS_FOLDER for the name of the folder where the results will be stored.
+Default: results
 
 ### OTOOL_JDK_VERSION
 Use OTOOL_JDK_VERSION for defition of java version. The corresponding subset of tests will be used.
 
 ### MSI_VENDOR
-Use MSI_VENDOR for defining vender specific settings used for test run.
+Use MSI_VENDOR for defining vender specific settings used for test run. (Adoptium or RH)
+Default: RH
 
 ### INPUT_FOLDER
 Use INPUT_FOLDER used for testing (including MSI)
+Default: input
 
 ### CURRENT_USER_NAME
 Use CURRENT_USER_NAME for definiton of user under which the tests will run.
+Default: $USER value
 
 # Credits
 This project would never be created without extensive help of
