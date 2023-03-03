@@ -30,7 +30,8 @@ ALL_TESTS=0
 PASSED_TESTS=0
 SKIPPED_TESTS=0
 tmpXmlBodyFile=$(mktemp)
-export RESULTS_FOLDER=$SCRIPT_DIR/../$RESULTS_FOLDER_NAME
+export RESULTS_FOLDER="$( readlink -m "$RESULTS_FOLDER" )"
+export INPUT_FOLDER="$( readlink -m "$INPUT_FOLDER" )"
 
 rm -rf "${SCRIPT_DIR:?}"/"$SUITE"
 set -x

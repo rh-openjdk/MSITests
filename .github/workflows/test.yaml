@@ -34,10 +34,10 @@ jobs:
         shell: msys2 {0}
         run: |
           mkdir input
-          echo "JDK_VERSION_INPUT=${{ matrix.jdkver }}" >> $GITHUB_ENV
-          echo "MSI_VENDOR_INPUT=Adoptium" >> $GITHUB_ENV
-          echo "RESULTS_FOLDER_NAME=results" >> $GITHUB_ENV
-          echo "CURRENT_USER_NAME_INPUT=runneradmin" >> $GITHUB_ENV
+          echo "JDK_VERSION=${{ matrix.jdkver }}" >> $GITHUB_ENV
+          echo "MSI_VENDOR=Adoptium" >> $GITHUB_ENV
+          echo "INPUT_FOLDER=input" >> $GITHUB_ENV
+          echo "RESULTS_FOLDER=results" >> $GITHUB_ENV
       - name: Download Installer
         shell: msys2 {0}
         run: |
