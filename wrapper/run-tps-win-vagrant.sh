@@ -38,8 +38,8 @@ export INPUT_FOLDER="${INPUT_FOLDER:-input}"
 
 # propagate CURRENT_USER, if set,
 # this should contain user used for testing
-# by default $USER
-export CURRENT_USER_NAME="${CURRENT_USER_NAME:-$USER}"
+# by default tester
+export CURRENT_USER_NAME="${CURRENT_USER_NAME:-tester}"
 
 export INSTALL_DIR_INPUT=C:\\\\Users\\\\$CURRENT_USER_NAME\\\\java
 

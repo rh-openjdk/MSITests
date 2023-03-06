@@ -38,6 +38,7 @@ jobs:
           echo "MSI_VENDOR=Adoptium" >> $GITHUB_ENV
           echo "INPUT_FOLDER=input" >> $GITHUB_ENV
           echo "RESULTS_FOLDER=results" >> $GITHUB_ENV
+          echo "CURRENT_USER_NAME=runneradmin" >> $GITHUB_ENV
       - name: Download Installer
         shell: msys2 {0}
         run: |
