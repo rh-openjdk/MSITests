@@ -38,7 +38,7 @@ export INPUT_FOLDER="${INPUT_FOLDER:-input}"
 
 # propagate CURRENT_USER, if set,
 # this should contain user name used for testing
-# user has to have admin rights to perform MSI installation
+# user has to have Windows admin rights to perform MSI installation
 # by default tester
 export CURRENT_USER_NAME="${CURRENT_USER_NAME:-tester}"
 
