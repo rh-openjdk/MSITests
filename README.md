@@ -28,6 +28,7 @@ Default: input
 ### CURRENT_USER_NAME
 Use CURRENT_USER_NAME for definiton of user under which the tests will run.  
 This is used as the root directory for installation, saving logs etc.  
+Prerequisities: user has to have Windows admin rights. Test suite uses default user account place in Users folder.
 Default: tester
 
 # Credits
