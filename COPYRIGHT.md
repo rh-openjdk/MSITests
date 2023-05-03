@@ -1,1 +1,1 @@
- Copyright 2018 WindowsTPS Authors
+ Copyright 2018 MSITests Authors
