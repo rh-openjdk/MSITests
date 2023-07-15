@@ -7,7 +7,7 @@ SYS_ENV_REG="HKLM\SYSTEM\CurrentControlSet\Control\Session Manager\Environment"
 RPMS_DIR=$INPUT_FOLDER
 
 if [[ $OTOOL_OS_VERSION -eq 2012 ]]; then
-  JAVA_INSTALL_DIR="C:\Users\$CURRENT_USER_NAME\java"
+  JAVA_INSTALL_DIR="C:\\Users\\$CURRENT_USER_NAME\java"
   JAVA_INSTALL_DIR_REG="C:\\\\Users\\\\$CURRENT_USER_NAME\\\\java"  
 fi
 
