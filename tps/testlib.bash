@@ -25,8 +25,8 @@ source "$TPS_SCRIPT_DIR/common.bash"
 if [[ $OTOOL_OS_VERSION -eq 2012 ]]; then
   mkdir -p /cygdrive/c/Users/$CURRENT_USER_NAME/java
   mkdir -p /cygdrive/c/Users/$CURRENT_USER_NAME/tps
-  JAVA_INSTALL_DIR="C:\Users\$CURRENT_USER_NAME\java"
-  LOG_DIR_WIN="C:\Users\$CURRENT_USER_NAME\tps"
+  JAVA_INSTALL_DIR="C:\Users\\$CURRENT_USER_NAME\java"
+  LOG_DIR_WIN="C:\Users\\$CURRENT_USER_NAME\tps"
 fi
 
 parseArguments() {
