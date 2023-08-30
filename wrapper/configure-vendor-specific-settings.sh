@@ -18,6 +18,10 @@ function configureAdoptiumSpecificSettings() {
 
 # there are specific targets for every major version, let's confugure default values for them
 function configureRHSpecificSettings() {
+  if [[ $OTOOL_JDK_VERSION -eq 21 ]]; then
+    export INSTALL_MODULES="jdk,jdk_registry_runtime,jdk_env_path"
+  fi
+
   if [[ $OTOOL_JDK_VERSION -eq 17 ]]; then
     export INSTALL_MODULES="jdk,jdk_registry_runtime,jdk_env_path"
     elif [[ $OTOOL_JDK_VERSION -eq 11 ]]; then
@@ -36,6 +40,10 @@ function configureRHSpecificSettings() {
     export JAVA_JDK_JVM_DLL=${JAVA_INSTALL_DIR_REG}\\\\bin\\\\server\\\\jvm.dll
   elif [[ $(ls "$INPUT_FOLDER" | grep "java-17-openjdk") ]]; then
     export JDK_REG_VERSION=17
+    export JDK_REG="HKLM\Software\JavaSoft\JDK\\${JDK_REG_VERSION}"
+    export JAVA_JDK_JVM_DLL=${JAVA_INSTALL_DIR_REG}\\\\bin\\\\server\\\\jvm.dll
+  elif [[ $(ls "$INPUT_FOLDER" | grep "java-21-openjdk") ]]; then
+    export JDK_REG_VERSION=21
     export JDK_REG="HKLM\Software\JavaSoft\JDK\\${JDK_REG_VERSION}"
     export JAVA_JDK_JVM_DLL=${JAVA_INSTALL_DIR_REG}\\\\bin\\\\server\\\\jvm.dll
   else
