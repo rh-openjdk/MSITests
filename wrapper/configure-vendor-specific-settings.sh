@@ -16,19 +16,29 @@ function configureAdoptiumSpecificSettings() {
   # todorc: configure Adoptium registry values
 }
 
-# there are specific targets for every major version, let's confugure default values for them
+# there are specific targets for every major version, let's configure default values for them
 function configureRHSpecificSettings() {
   if [[ $OTOOL_JDK_VERSION -eq 21 ]]; then
     export INSTALL_MODULES="jdk,jdk_registry_runtime,jdk_env_path"
   fi
 
-  if [[ $OTOOL_JDK_VERSION -eq 17 ]]; then
-    export INSTALL_MODULES="jdk,jdk_registry_runtime,jdk_env_path"
-    elif [[ $OTOOL_JDK_VERSION -eq 11 ]]; then
-    export INSTALL_MODULES="jdk,jdk_registry_standard,jdk_env_path"
-  else
+case $OTOOL_JDK_VERSION in
+  8)
     export INSTALL_MODULES="jdk,jdk_devel,jdk_registry_standard,jdk_registry_standard_devel,jdk_env_path"
-  fi
+    ;;
+  11)
+    export INSTALL_MODULES="jdk,jdk_registry_standard,jdk_env_path"
+    ;;
+  17)
+    export INSTALL_MODULES="jdk,jdk_registry_runtime,jdk_env_path"
+    ;;
+  21)
+      export INSTALL_MODULES="jdk,jdk_registry_runtime,jdk_env_path"
+      ;;
+  *)
+    echo "Unsupported JDK version."
+    ;;
+esac
 
   if [[ $(ls "$INPUT_FOLDER" | grep "java-1.8.0-openjdk") ]]; then
     export JDK_REG="HKLM\Software\JavaSoft\Java Development Kit"
