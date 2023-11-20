@@ -17,7 +17,7 @@ jobs:
           - JDK 8
           - JDK 11
           - JDK 17
-          - JDK 20
+          - JDK 21
         include:
           - jdkconf: JDK 8
             jdkver: "8"
@@ -25,8 +25,8 @@ jobs:
             jdkver: "11"
           - jdkconf: JDK 17
             jdkver: "17"
-          - jdkconf: JDK 20
-            jdkver: "20"
+          - jdkconf: JDK 21
+            jdkver: "21"
     steps:
       - uses: actions/checkout@v3
       - uses: msys2/setup-msys2@v2
