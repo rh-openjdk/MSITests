@@ -21,7 +21,7 @@ source "$SCRIPT_DIR/testlib.bash"
 parseArguments "$@"
 processArguments
 
-if [ "$MSI_VENDOR" == "Adoptium" ] && [[ "$OTOOL_JDK_VERSION" -eq 20 ]]; then
+if [ "$MSI_VENDOR" == "Adoptium" ] && [[ "$OTOOL_JDK_VERSION" -eq 21 ]]; then
     echo "$NOT_IMPLEMENTED_ON_ADOPTIUM"
     exit 0   
 fi
